@@ -1,5 +1,4 @@
 import { Component } from 'react';
-
 import { API, APIKEY } from '../config';
 import { WeatherData } from '../types';
 import { createWeatherData } from '../utils/dateConverter';
@@ -47,17 +46,23 @@ export default class WeatherMain extends Component<Props, State> {
 	}
 
 	render() {
-		const loading = this.state.loading && <img src='/loading.svg' alt='loading' />;
-
-		const weatherDisplay = !this.state.loading && this.state.weatherData && (
-			<WeatherDisplay weatherData={this.state.weatherData} />
-		);
+		const loading = this.state.loading && <div className='loader'><img src='/loading.svg' alt='loading' /></div>;
+		const weatherToday = this.state.weatherData?.length && <WeatherDisplay weatherData={this.state.weatherData.splice(0,1)} />;
+		const forecastData = (this.state.weatherData?.length)  && this.state.weatherData.splice(1,4);
+		const weatherForecast = forecastData && <WeatherDisplay weatherData={forecastData} />;
 
 		return (
-			<>
-				{loading}
-				{weatherDisplay}
-			</>
+				<section className="weather">
+					{loading}
+					{!this.state.loading && <div className="weather weather-container">
+							<div className="weather weather--today">
+								{weatherToday}
+							</div>
+							<div className="weather weather--forecast">
+								{weatherForecast}
+							</div>
+					</div>}
+				</section>
 		);
 	}
 }

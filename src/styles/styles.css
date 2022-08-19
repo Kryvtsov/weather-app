@@ -1,5 +1,117 @@
 body {
   margin: 0;
   padding: 0;
+  background-color: #eef6fb;
+  font-family: 'Open Sans', sans-serif;
+}
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 0;
+}
+header .header {
+  font-size: 26px;
+  text-transform: uppercase;
+  font-weight: 100;
+}
+header .header:hover {
+  cursor: pointer;
+}
+header .header:nth-child(2) {
+  margin: 0 50px;
+}
+header .header--citiesCurrent {
+  color: #5fb0e8;
+  font-weight: bold;
+}
+.loader {
+  display: flex;
+  justify-content: center;
+  padding-top: 20%;
+}
+section.weather {
+  box-shadow: 0px 0px 16px 4px rgba(0, 0, 0, 0.15);
+  border: 5px solid #fff;
+  border-radius: 10px;
+  max-width: 800px;
+  min-height: 500px;
+  margin: 0 auto;
+}
+.weather {
+  font-weight: 100;
+}
+.weather-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.weather--forecast {
+  display: flex;
+}
+.weather--today {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border-bottom: 5px solid #fff;
+  padding: 30px 0;
+}
+.weather--today h3 {
+  font-size: 24px;
+  font-weight: 100;
+  margin: 0 auto 30px;
+}
+.weather .todayWeather--main {
+  display: flex;
+  flex-direction: column;
+}
+.weather .todayWeather--container {
+  display: flex;
+  align-items: center;
+}
+.weather .todayWeather--container img {
+  width: 170px;
+  margin-right: 20px;
+}
+.weather .todayWeather--info {
+  display: flex;
+  flex-direction: column;
+}
+.weather .todayWeather--temp {
+  font-size: 70px;
+  font-weight: 500;
+}
+.weather .todayWeather--description {
+  font-size: 24px;
+}
+.weather--forecast {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.weather .forecastWeather {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+.weather .forecastWeather--main {
+  border-right: 5px solid #fff;
+}
+.weather .forecastWeather--main:nth-last-child(1) {
+  border-right: none;
+}
+.weather .forecastWeather h2 {
+  font-weight: 100;
+}
+.weather .forecastWeather img {
+  width: 100px;
+}
+.weather .forecastWeather--temp {
+  font-size: 22px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 15px;
 }
 /*# sourceMappingURL=styles.css.map */

@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import WeatherMain from './WeatherMain';
+import Header from './Header';
 import { cities } from '../constants/cities';
 
 interface Props { };
@@ -13,33 +14,17 @@ class App extends Component<Props, State>{
 		this.state = {
 			currentCity: cities[0]
 		};
+		this.handleChangeCity = this.handleChangeCity.bind(this)
 	}
 	
-	changeCity(e: any) {
-		const target = e.target;
-		const currentCity = target.textContent;
+	handleChangeCity(currentCity: string) {		
 		this.setState({currentCity})
 	}
 
 	render() {
 		return (
 			<div className="App">
-				<header>
-					{cities.map((city: string) => {
-						const cityClassName = city === this.state.currentCity 
-							? 'App--cities App--citiesCurrent' 
-							: 'App--cities';
-						return (
-							<span 
-								key={city} 
-								className={cityClassName}
-								onClick={e => this.changeCity(e)}>
-								{city}
-							</span>
-						)
-					})}
-				</header>
-
+				<Header changeCity={this.handleChangeCity} currentCity={this.state.currentCity} />
 				<WeatherMain currentCity={this.state.currentCity} />
 			</div>
 		);

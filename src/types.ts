@@ -1,5 +1,5 @@
 export type WeatherData = {
-	city: string;
+	day: string,
 	temp: number;
 	description: string;
 	icon: string;

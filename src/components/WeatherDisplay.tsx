@@ -9,31 +9,49 @@ interface Props {
 
 export default class WeatherDisplay extends Component<Props> {
 
-    currentWeatherBlock(data: any) {
-        const weatherData= data.Today
-        const iconUrl = `${ICON}${weatherData.icon}@4x.png`
+    todayWeatherItem(data: any) {                
+        const iconUrl = `${ICON}${data.icon}.svg`
         return (
-            <>
-                <h3>Today</h3>
-                <img src={iconUrl} alt="today weather" />
-                <div>
-                    <span>{weatherData.temp}</span>
-                    <span>{weatherData.description}</span>
+            <div className='todayWeather todayWeather--main'>
+                <h3>{data.day}</h3>
+                <div className='todayWeather todayWeather--container'>
+                    <img src={iconUrl} alt='today weather' />
+                    <div className='todayWeather todayWeather--info'>
+                        <div className='todayWeather todayWeather--temp'>{data.temp}&deg;</div>
+                        <div className='todayWeather todayWeather--description'>{data.description}</div>
+                    </div>
                 </div>
-            </>
+            </div>
+        )
+    }
+
+    forecatsWeatherItem(data: any) {        
+        return (
+            data.map((dayWeather: any, key: number) => {
+                const iconUrl = `${ICON}${dayWeather.icon}.svg`
+                return (
+                    <div className='forecastWeather forecastWeather--main' key={key}>
+                        <h2>{dayWeather.day}</h2>
+                        <div className='forecastWeather forecastWeather--container'>
+                            <img src={iconUrl} alt='forecast weather' />
+                            <div className='forecastWeather forecastWeather--info'>
+                                <div className='forecastWeather forecastWeather--temp'>{dayWeather.temp}&deg;</div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            })
+            
         )
     }
 	
 
 	render() {
 		const { weatherData } = this.props;
-		const currentWeather = weatherData[0];
-        const forecastWeather = weatherData.slice(1,5)
+		if (weatherData[0].day === 'Today') {
+            return this.todayWeatherItem(weatherData[0])
+        }
 
-		return (
-			<>
-                {this.currentWeatherBlock(currentWeather)}
-			</>
-		);
+		return this.forecatsWeatherItem(weatherData);
 	}
 }
